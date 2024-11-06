@@ -73,6 +73,9 @@ def server(input: Inputs, output: Outputs, session):
             else:  # Fehlernachricht
                 chat_html.append(f'<div style="display: block; color: red; padding: 8px; margin: 5px; border-radius: 10px; clear: both;">{message}</div>')
 
+          # Lösche den Inhalt des Eingabefelds nach dem Senden der Nachricht
+        ui.update_text("question", value="")
+
         return ui.HTML("".join(chat_html))
 
 # Erstellen der Shiny App
