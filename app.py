@@ -67,11 +67,11 @@ def server(input: Inputs, output: Outputs, session):
         chat_html = []
         for role, message in chat_history.get():
             if role == "user":
-                chat_html.append(f'<div style="text-align: right; background-color: #DCF8C6; padding: 8px; margin: 5px; border-radius: 10px;">{message}</div>')
+                chat_html.append(f'<div style="display: inline-block; max-width: 70%; float: right; background-color: #DCF8C6; padding: 8px; margin: 5px; border-radius: 10px; clear: both;">{message}</div>')
             elif role == "assistant":
-                chat_html.append(f'<div style="text-align: left; background-color: #ECECEC; padding: 8px; margin: 5px; border-radius: 10px;">{message}</div>')
+                chat_html.append(f'<div style="display: inline-block; max-width: 70%; float: left; background-color: #ECECEC; padding: 8px; margin: 5px; border-radius: 10px; clear: both;">{message}</div>')
             else:  # Fehlernachricht
-                chat_html.append(f'<div style="color: red; padding: 8px; margin: 5px; border-radius: 10px;">{message}</div>')
+                chat_html.append(f'<div style="display: block; color: red; padding: 8px; margin: 5px; border-radius: 10px; clear: both;">{message}</div>')
 
         return ui.HTML("".join(chat_html))
 
