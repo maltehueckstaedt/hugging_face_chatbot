@@ -1,0 +1,130 @@
+/* Gesamtcontainer der App, zentriert auf dem Bildschirm */
+.app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Innerer Hauptcontainer, ebenfalls zentriert und mit fixer Breite */
+.content-container {
+    max-width: 375px;
+    margin: 0 auto;
+}
+
+/* Chatverlauf-Anzeige mit Scrolloption und Platz für das Eingabefeld */
+.chat-display {
+    height: 80vh;
+    overflow-y: auto;
+    padding-bottom: 60px; /* Platz für das fixe Eingabefeld am unteren Rand */
+}
+
+/* Container für Eingabefeld und Button am unteren Rand, zentriert und mit Schatten */
+.input-container {
+    max-width: 375px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Stil für das Eingabefeld */
+.custom-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+/* Styling für den Button, zentriert und runder Stil */
+.ask-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Macht den Button rund */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.ask-button:hover {
+    background-color: #0056b3; /* Optionaler Hover-Effekt */
+}
+
+/* Nachrichtenstil für Benutzer (rechtsbündig, auf eigener Zeile) */
+.user-message {
+    background-color: #d4f8d4; /* Helles Grün */
+    color: #2d7a2d;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+    display: inline-block;
+    float: right; /* Rechtsbündig */
+    clear: both;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/* Nachrichtenstil für Assistent (linksbündig, auf eigener Zeile) */
+.assistant-message {
+    background-color: #ECECEC; /* Helles Grau */
+    color: #555;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+    display: inline-block;
+    float: left; /* Linksbündig */
+    clear: both;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+/* Fehlernachricht Stil */
+.error-message {
+    background-color: #ffdcdc; /* Helles Rot für Fehler */
+    color: #a94442;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+    display: inline-block;
+    clear: both;
+    text-align: center;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+
+.form-control {
+    display: block;
+    width: 100%;
+    padding: 0.375rem .75rem;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    margin-top: 15px;
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid #8D959E;
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
