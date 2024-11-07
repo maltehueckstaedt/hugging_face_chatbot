@@ -1,0 +1,12 @@
+{
+    "https://api.shinyapps.io": {
+        "server_url": "https://api.shinyapps.io",
+        "filename": "C:\\Users\\mhu\\Documents\\GitHub\\hugging_face_chatbot\\app",
+        "app_url": "https://chernofffaces.shinyapps.io/chernoffchat/",
+        "app_id": 13253164,
+        "app_guid": null,
+        "title": "Chernoff.Chat",
+        "app_mode": "python-shiny",
+        "app_store_version": 1
+    }
+}

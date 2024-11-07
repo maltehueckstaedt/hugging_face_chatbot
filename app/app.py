@@ -3,12 +3,13 @@ from shiny import App, render, ui, reactive, Inputs, Outputs
 import openai
 
 # OpenAI-API-Schlüssel setzen
-with open("api_key.txt", "r") as key_file:
+with open("app/api_key.txt", "r") as key_file:
     OPENAI_API_KEY = key_file.read().strip()
+
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 # Lies den Inhalt der Kontextdatei ein, wenn die App startet
-with open("kontext_cf.txt", "r", encoding="utf-8") as file:
+with open("app/kontext_cf.txt", "r", encoding="utf-8") as file:
     text_inhalt = file.read()
 
 
