@@ -30,7 +30,7 @@ app_ui = ui.page_fluid(
                 ),
                 # Eingabefeld und Button in einer Zeile im Container
                 ui.div(
-                    ui.input_text("question", None, placeholder="Geben Sie Ihre Frage ein..."),
+                    ui.input_text("question", None, placeholder="Ask please..."),
                     ui.input_action_button("ask_button", None, class_="ask-button"),
                     class_="input-container"
                 ),
