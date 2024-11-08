@@ -1,61 +1,73 @@
+from openai import OpenAI
 import streamlit as st
-import openai
 
-# API-Schlüssel und Kontext laden
-with open("Streamlit/api_key.txt", "r") as key_file:
-    OPENAI_API_KEY = key_file.read().strip()
+st.title("ChatGPT-like clone")
 
-with open("Streamlit/kontext_cf.txt", "r", encoding="utf-8") as file:
+st.markdown(
+    """
+    <style>
+    .user-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 5px 0;
+        width: fit-content;
+        max-width: 80%;
+        align-self: flex-end;
+    }
+    .assistant-message {
+        background-color: #f1f3f4;
+        color: #333;
+        padding: 10px;
+        border-radius: 8px;
+        margin: 5px 0;
+        width: fit-content;
+        max-width: 80%;
+        align-self: flex-start;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Textinhalt als Systemnachricht (wird im Chat selbst nicht angezeigt)
+with open("kontext_cf.txt", "r", encoding="utf-8") as file:
     text_inhalt = file.read()
 
-# OpenAI-API-Schlüssel setzen
-client = openai.OpenAI(api_key=OPENAI_API_KEY)
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
-# Chatverlauf und Eingabewert im Session State speichern
-if "chat_history" not in st.session_state:
-    st.session_state["chat_history"] = []
+if "openai_model" not in st.session_state:
+    st.session_state["openai_model"] = "gpt-3.5-turbo"
 
-if "user_input" not in st.session_state:
-    st.session_state["user_input"] = ""
+if "messages" not in st.session_state:
+    # Füge `text_inhalt` nur als systeminterne Nachricht hinzu
+    st.session_state.messages = [{"role": "system", "content": text_inhalt}]
 
-# Funktion, um eine Antwort vom Chatbot zu erhalten
-def get_response(user_input):
-    response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": text_inhalt},
-            {"role": "user", "content": user_input}
-        ],
-        temperature=0  # Schnellere und deterministische Antwort
-    )
-    return response.choices[0].message.content
+# Anzeigen der Nachrichten, ohne die Systemnachricht `text_inhalt`
+for message in st.session_state.messages:
+    if message["role"] != "system":  # Systemnachricht wird nicht angezeigt
+        css_class = "user-message" if message["role"] == "user" else "assistant-message"
+        with st.chat_message(message["role"]):
+            st.markdown(f"<div class='{css_class}'>{message['content']}</div>", unsafe_allow_html=True)
 
-# Streamlit App Layout
-st.title("Chatbot Interface")
+# Benutzer-Eingabe und Antwort-Verarbeitung
+if prompt := st.chat_input("What is up?"):
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"):
+        st.markdown(f"<div class='user-message'>{prompt}</div>", unsafe_allow_html=True)
 
-# Anzeige des Chatverlaufs
-st.write("### Chatverlauf")
-for role, message in st.session_state["chat_history"]:
-    if role == "user":
-        st.markdown(f"<div style='text-align: right; background-color: #DCF8C6; padding: 8px; margin: 5px; border-radius: 10px;'>{message}</div>", unsafe_allow_html=True)
-    elif role == "assistant":
-        st.markdown(f"<div style='text-align: left; background-color: #ECECEC; padding: 8px; margin: 5px; border-radius: 10px;'>{message}</div>", unsafe_allow_html=True)
-    else:
-        st.markdown(f"<div style='color: red; padding: 8px; margin: 5px; border-radius: 10px;'>{message}</div>", unsafe_allow_html=True)
+    with st.chat_message("assistant"):
+        # Übergibt die Systemnachricht intern, ohne sie anzuzeigen
+        stream = client.chat.completions.create(
+            model=st.session_state["openai_model"],
+            messages=[
+                {"role": m["role"], "content": m["content"]}
+                for m in st.session_state.messages
+            ],
+            stream=True,
+        )
+        response = st.write_stream(stream)
 
-# Eingabefeld für Benutzereingabe
-user_input = st.text_input("Geben Sie Ihre Frage ein:", value=st.session_state["user_input"], placeholder="z.B.: Was ist die Hauptstadt von Deutschland?")
-
-# Wenn eine Frage gestellt wird, wird die Antwort angezeigt
-if st.button("Frage stellen") and user_input:
-    try:
-        # Antwort des Chatbots abrufen
-        answer = get_response(user_input)
-        # Chatverlauf aktualisieren
-        st.session_state["chat_history"].append(("user", user_input))
-        st.session_state["chat_history"].append(("assistant", answer))
-        # Eingabefeld nach dem Senden der Nachricht leeren
-        st.session_state["user_input"] = ""  # Eingabefeld zurücksetzen
-    except Exception as e:
-        # Fehlerbehandlung
-        st.session_state["chat_history"].append(("error", f"Ein Fehler ist aufgetreten: {e}"))
+    # Antwort zur Sitzung hinzufügen
+    st.session_state.messages.append({"role": "assistant", "content": response})

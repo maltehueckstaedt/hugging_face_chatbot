@@ -1,0 +1,63 @@
+.st-emotion-cache-1c7y2kd {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+}
+
+/* styles.css */
+
+/* Nachricht des Benutzers: grüne Hintergrundfarbe */
+/* styles.css */
+
+/* Nachricht des Benutzers: grüne Hintergrundfarbe */
+.user-message {
+    background-color: #d4edda; /* Helles Grün */
+    color: #155724; /* Dunkler Grünton für den Text */
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    width: fit-content;      /* Passt die Breite an den Inhalt an */
+    max-width: 80%;          /* Begrenzung der maximalen Breite */
+    margin-left: auto;       /* Nachricht auf die rechte Seite ausrichten */
+}
+
+/* Stil für Chatbot-Nachricht */
+.assistant-message {
+    background-color: #ffea03; /* Dunkleres Grau für den Assistenten */
+    color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    width: fit-content;      /* Passt die Breite an den Inhalt an */
+    max-width: 80%;          /* Begrenzung der maximalen Breite */
+    margin-right: auto;      /* Nachricht auf die linke Seite ausrichten */
+    transition: background-color 0.3s ease-in-out; /* Übergang für den Hintergrund */
+}
+
+
+.st-emotion-cache-p4micv {
+    width: 4rem;
+    height: 4rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    display: flex;
+}
+
+.st-emotion-cache-1wpj71q {
+    border-radius: 0.5rem;
+    display: flex;
+    background-color: rgb(243 243 243);
+    width: 704px;
+}
+
+.st-emotion-cache-1wpj71q:focus,
+.st-emotion-cache-1wpj71q:active,
+.st-emotion-cache-1wpj71q:focus-visible {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important; /* Entfernt jegliche Schatteneffekte */
+}
