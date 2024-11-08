@@ -3,35 +3,43 @@ from shiny import App, render, ui, reactive, Inputs, Outputs
 import openai
 
 # OpenAI-API-Schlüssel setzen
-with open("app/api_key.txt", "r") as key_file:
+with open("api_key.txt", "r") as key_file:
     OPENAI_API_KEY = key_file.read().strip()
 
 client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
 # Lies den Inhalt der Kontextdatei ein, wenn die App startet
-with open("app/kontext_cf.txt", "r", encoding="utf-8") as file:
+with open("kontext_cf.txt", "r", encoding="utf-8") as file:
     text_inhalt = file.read()
-
 
 # UI-Definition der Shiny App
 app_ui = ui.page_fluid(
-    # Chatverlauf-Anzeige
-    ui.div(
-        ui.output_ui("chat_display"),
-        style="height: 80vh; overflow-y: auto; padding-bottom: 60px;"  # Platz für das Eingabefeld unten
-    ),
-    
-    # Eingabefeld und Button am unteren Rand fixieren
     ui.div(
         ui.div(
-            ui.input_text("question", "Geben Sie Ihre Frage ein:", placeholder="z.B.: Was ist die Hauptstadt von Deutschland?"),
-            style="width: 100%; margin-bottom: 5px;"
+            # Hauptcontainer für die gesamte App
+            ui.div(
+                # Chatverlauf-Anzeige
+                ui.div(
+                    ui.output_ui("chat_display"),
+                    style="height: 80vh; overflow-y: auto; padding-bottom: 60px;"  # Platz für das Eingabefeld unten
+                ),
+                # Eingabefeld und Button in einem zentrierten Container am unteren Rand
+                ui.div(
+                    ui.div(
+                        ui.input_text("question", "Geben Sie Ihre Frage ein:", placeholder="z.B.: Was ist die Hauptstadt von Deutschland?"),
+                        style="width: 100%; margin-bottom: 5px;"
+                    ),
+                    ui.div(
+                        ui.input_action_button("ask_button", "Frage stellen"),
+                        style="width: 100%;"
+                    ),
+                    style="max-width: 375px; margin: 0 auto; background-color: white; padding: 10px; box-shadow: 0px -1px 5px rgba(0,0,0,0.1); position: fixed; bottom: 0; left: 0; right: 0;"
+                ),
+                style="max-width: 375px; margin: 0 auto;"  # Festgelegte Breite, zentriert
+            ),
+            style="display: flex; justify-content: center; align-items: center; height: 100vh;"  # Zentriert auf dem Bildschirm
         ),
-        ui.div(
-            ui.input_action_button("ask_button", "Frage stellen"),
-            style="width: 100%;"
-        ),
-        style="position: fixed; bottom: 0; width: 100%; background-color: white; padding: 10px; box-shadow: 0px -1px 5px rgba(0,0,0,0.1);"
+        style="display: flex; justify-content: center; align-items: center; height: 100vh;"  # Äußere Zentrierung
     )
 )
 
@@ -74,7 +82,7 @@ def server(input: Inputs, output: Outputs, session):
             else:  # Fehlernachricht
                 chat_html.append(f'<div style="display: block; color: red; padding: 8px; margin: 5px; border-radius: 10px; clear: both;">{message}</div>')
 
-          # Lösche den Inhalt des Eingabefelds nach dem Senden der Nachricht
+        # Lösche den Inhalt des Eingabefelds nach dem Senden der Nachricht
         ui.update_text("question", value="")
 
         return ui.HTML("".join(chat_html))
