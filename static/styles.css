@@ -1,0 +1,136 @@
+.st-emotion-cache-1c7y2kd {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+}
+
+/* styles.css */
+
+/* Nachricht des Benutzers: grüne Hintergrundfarbe */
+/* styles.css */
+
+/* Nachricht des Benutzers: grüne Hintergrundfarbe */
+.user-message {
+    background-color: #bdbdbd;
+    color: #484948;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 100%;
+    margin-left: auto;
+    text-align: right;
+}
+
+
+
+/* Stil für Chatbot-Nachricht */
+.assistant-message {
+    background-color: rgb(245, 5, 3);
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 5px 0;
+    width: fit-content;
+    max-width: 100%;
+    margin-right: auto;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.st-emotion-cache-p4micv {
+    width: 4rem;
+    height: 4rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    display: flex;
+}
+
+.st-emotion-cache-1wpj71q {
+    border-radius: 0.5rem;
+    display: flex;
+    background-color: rgb(243 243 243);
+    width: 704px;
+}
+
+.st-emotion-cache-1wpj71q:focus,
+.st-emotion-cache-1wpj71q:active,
+.st-emotion-cache-1wpj71q:focus-visible {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important; /* Entfernt jegliche Schatteneffekte */
+}
+
+[data-testid="stChatMessageAvatarUser"] {
+    display: none !important;
+}
+
+/* Original-Icon ausblenden */
+[data-testid="stChatInputSubmitButton"] svg {
+    display: none !important;
+}
+
+/* Original-Icon ausblenden */
+[data-testid="stChatInputSubmitButton"] svg {
+    display: none !important;
+}
+
+/* Font Awesome "Arrow Up" Icon als Hintergrundbild */
+[data-testid="stChatInputSubmitButton"]::before {
+    content: "\f062"; /* Unicode für Font Awesome "arrow-up" Icon */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900; /* Für Solid Icons */
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit; /* Übernimmt die Schriftfarbe */
+    width: 100%;
+    height: 100%;
+}
+
+/* Hover-Effekt für den Button entfernen */
+[data-testid="stChatInputSubmitButton"] {
+    border: none !important;
+    background-color: transparent !important;
+    color: rgb(85, 88, 103) !important; /* Setzt die Standardfarbe */
+    box-shadow: none !important; /* Entfernt Schatteneffekte */
+}
+
+/* eingabefeld keine füllung*/
+.st-emotion-cache-1wpj71q {
+    border-radius: 0.5rem;
+    display: flex;
+    background-color: transparent;
+    width: 0px;
+}
+
+
+.st-emotion-cache-janbn0 {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    background-color: transparent;
+}
+
+
+footer {
+	
+	visibility: hidden;
+	
+	}
+footer:after {
+	content:'goodbye'; 
+	visibility: visible;
+	display: block;
+	position: relative;
+	#background-color: red;
+	padding: 5px;
+	top: 2px;
+}
