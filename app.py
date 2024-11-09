@@ -1,6 +1,14 @@
 from openai import OpenAI
 import streamlit as st
 
+# Font Awesome CSS einbinden
+st.markdown(
+    """
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    """,
+    unsafe_allow_html=True
+)
+
 # CSS laden
 def load_css():
     with open("static/styles.css", "r") as f:
@@ -37,7 +45,7 @@ for message in st.session_state.messages:
                     unsafe_allow_html=True
                 )
         else:
-            with st.chat_message(message["role"]):
+            with st.chat_message(message["role"], avatar=None):  # Kein Avatar für den Nutzer
                 st.markdown(
                     f"<div class='user-message'>{message['content']}</div>",
                     unsafe_allow_html=True
@@ -46,7 +54,7 @@ for message in st.session_state.messages:
 # Benutzer-Eingabe und Antwort-Verarbeitung
 if prompt := st.chat_input("Was ist los?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar=None):  # Kein Avatar für den Nutzer
         st.markdown(
             f"<div class='user-message'>{prompt}</div>",
             unsafe_allow_html=True
