@@ -118,3 +118,19 @@
     border-radius: 0.5rem;
     background-color: transparent;
 }
+
+
+footer {
+	
+	visibility: hidden;
+	
+	}
+footer:after {
+	content:'goodbye'; 
+	visibility: visible;
+	display: block;
+	position: relative;
+	#background-color: red;
+	padding: 5px;
+	top: 2px;
+}
