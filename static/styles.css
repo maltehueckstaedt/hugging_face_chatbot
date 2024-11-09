@@ -14,14 +14,14 @@
 
 /* Nachricht des Benutzers: grüne Hintergrundfarbe */
 .user-message {
-    background-color: #bfffc2; /* Helles Grün */
-    color: #155724; /* Dunkler Grünton für den Text */
+    background-color: #bdbdbd;
+    color: #484948;
     padding: 10px;
     border-radius: 8px;
     margin: 5px 0;
-    width: fit-content;      /* Passt die Breite an den Inhalt an */
-    max-width: 80%;          /* Begrenzung der maximalen Breite */
-    margin-left: auto;       /* Nachricht auf die rechte Seite ausrichten */
+    width: fit-content;
+    max-width: 80%;
+    margin-left: auto;
     text-align: right;
 }
 
@@ -99,4 +99,12 @@
     background-color: transparent !important;
     color: rgb(85, 88, 103) !important; /* Setzt die Standardfarbe */
     box-shadow: none !important; /* Entfernt Schatteneffekte */
+}
+
+/* eingabefeld keine füllung*/
+.st-emotion-cache-1wpj71q {
+    border-radius: 0.5rem;
+    display: flex;
+    background-color: transparent;
+    width: 0px;
 }

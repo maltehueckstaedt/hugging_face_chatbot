@@ -30,6 +30,31 @@ if "messages" not in st.session_state:
     # Füge text_inhalt nur als systeminterne Nachricht hinzu
     st.session_state.messages = [{"role": "system", "content": text_inhalt}]
 
+    st.session_state.messages.append({
+        "role": "assistant",
+        "content": (
+            # Englischer Text
+            "Welcome, I am the chatbot of the Chernoff Faces. I'm here to help."
+            "Please ask me questions about Chernoff Faces and Chernoff Faces related topics. I am not autoscripted."
+            " I can communicate with you in many languages, including English, French, Chinese, Arabic, and many more.<br><br>"
+
+            # Französischer Text
+            "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider."
+            "Veuillez me poser des questions sur les Chernoff Faces et les sujets liés aux Chernoff Faces. Je ne suis pas autosuffisant."
+            "Je peux communiquer avec vous dans de nombreuses langues, dont l'anglais, le français, le chinois, l'arabe et bien d'autres.<br><br>"
+
+            # Arabisch
+            "مرحباً، أنا روبوت الدردشة الآلي لـ وجوه تشيرنوف. أنا هنا للمساعدة."
+            "من فضلك اسألني أسئلة حول وجوه تشيرنوف والمواضيع المتعلقة بوجوه تشيرنوف. أنا لست آلياً."
+            "يمكنني التواصل معك بالعديد من اللغات، بما في ذلك الإنجليزية، الفرنسية، الصينية، العربية، وغيرها الكثير.<br><br>"
+
+            # Vereinfachtes Chinesisch
+            "欢迎，我是切尔诺夫面孔的聊天机器人。我是来帮忙的。"
+            "请向我提出关于切尔诺夫面孔和切尔诺夫面孔相关主题的问题。我不是自动脚本。"
+            "我可以用多国语言与您沟通，包括英文、法文、中文、阿拉伯文等等。"
+        )
+    })
+
 # Avatar-Bildpfad definieren
 assistant_avatar = "chernoff_chat.png"
 
@@ -52,7 +77,7 @@ for message in st.session_state.messages:
                 )
 
 # Benutzer-Eingabe und Antwort-Verarbeitung
-if prompt := st.chat_input("Was ist los?"):
+if prompt := st.chat_input("Message"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user", avatar=None):  # Kein Avatar für den Nutzer
         st.markdown(
