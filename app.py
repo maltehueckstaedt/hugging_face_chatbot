@@ -22,22 +22,29 @@ if "messages" not in st.session_state:
     # Füge text_inhalt nur als systeminterne Nachricht hinzu
     st.session_state.messages = [{"role": "system", "content": text_inhalt}]
 
-# Avatar-Bildpfade definieren
-assistant_avatar = "cf_logo.png"
+# Avatar-Bildpfad definieren
+assistant_avatar = "chernoff_chat.png"
 
 # Anzeigen der Nachrichten, ohne die Systemnachricht text_inhalt
 for message in st.session_state.messages:
     if message["role"] != "system":  # Systemnachricht wird nicht angezeigt
-        css_class = "user-message" if message["role"] == "user" else "assistant-message"
-        avatar = assistant_avatar if message["role"] == "assistant" else None  # Avatar nur für den Bot
-        with st.chat_message(message["role"], avatar=avatar):
-            st.markdown(
-                f"<div class='{css_class}'>{message['content']}</div>",
-                unsafe_allow_html=True
-            )
+        # Überprüfe die Rolle und setze das Avatar entsprechend
+        if message["role"] == "assistant":
+            with st.chat_message(message["role"], avatar=assistant_avatar):
+                # Füge eine Klasse zum Nachrichteninhalt hinzu
+                st.markdown(
+                    f"<div class='assistant-message'>{message['content']}</div>",
+                    unsafe_allow_html=True
+                )
+        else:
+            with st.chat_message(message["role"]):
+                st.markdown(
+                    f"<div class='user-message'>{message['content']}</div>",
+                    unsafe_allow_html=True
+                )
 
 # Benutzer-Eingabe und Antwort-Verarbeitung
-if prompt := st.chat_input("What is up?"):
+if prompt := st.chat_input("Was ist los?"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(
@@ -58,11 +65,10 @@ if prompt := st.chat_input("What is up?"):
             stream=True,
         )
         for chunk in stream:
-            # Versuche, den Inhalt zu erhalten, oder setze ihn auf einen leeren String
             content = getattr(chunk.choices[0].delta, 'content', None)
             if content:
                 full_response += content
-                # Aktualisiere den Platzhalter mit dem gestreamten Inhalt und wende die CSS-Klasse an
+                # Aktualisiere den Platzhalter mit dem gestreamten Inhalt
                 message_placeholder.markdown(
                     f"<div class='assistant-message'>{full_response}</div>",
                     unsafe_allow_html=True

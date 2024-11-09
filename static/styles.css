@@ -14,7 +14,7 @@
 
 /* Nachricht des Benutzers: grüne Hintergrundfarbe */
 .user-message {
-    background-color: #d4edda; /* Helles Grün */
+    background-color: #bfffc2; /* Helles Grün */
     color: #155724; /* Dunkler Grünton für den Text */
     padding: 10px;
     border-radius: 8px;
@@ -26,7 +26,7 @@
 
 /* Stil für Chatbot-Nachricht */
 .assistant-message {
-    background-color: #ffea03; /* Dunkleres Grau für den Assistenten */
+    background-color: #c5c5c5; /* Dunkleres Grau für den Assistenten */
     color: #333;
     padding: 10px;
     border-radius: 8px;
