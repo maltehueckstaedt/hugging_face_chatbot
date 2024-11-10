@@ -5,6 +5,8 @@ import streamlit as st
 st.markdown(
     """
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&family=Noto+Sans+Arabic&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
+
     """,
     unsafe_allow_html=True
 )
@@ -42,11 +44,6 @@ if "messages" not in st.session_state:
             "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider."
             "Veuillez me poser des questions sur les Chernoff Faces et les sujets liés aux Chernoff Faces. Je ne suis pas autosuffisant."
             "Je peux communiquer avec vous dans de nombreuses langues, dont l'anglais, le français, le chinois, l'arabe et bien d'autres.<br><br>"
-
-            # Arabisch
-            "مرحباً، أنا روبوت الدردشة الآلي لـ وجوه تشيرنوف. أنا هنا للمساعدة."
-            "من فضلك اسألني أسئلة حول وجوه تشيرنوف والمواضيع المتعلقة بوجوه تشيرنوف. أنا لست آلياً."
-            "يمكنني التواصل معك بالعديد من اللغات، بما في ذلك الإنجليزية، الفرنسية، الصينية، العربية، وغيرها الكثير.<br><br>"
 
             # Vereinfachtes Chinesisch
             "欢迎，我是切尔诺夫面孔的聊天机器人。我是来帮忙的。"

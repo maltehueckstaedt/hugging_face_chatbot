@@ -38,6 +38,7 @@
     max-width: 100%;
     margin-right: auto;
     transition: background-color 0.3s ease-in-out;
+    line-height: 1.2; /* Hier den Wert anpassen, z. B. 1.2 für engeren Zeilenabstand */
 }
 
 
@@ -133,4 +134,11 @@ footer:after {
 	#background-color: red;
 	padding: 5px;
 	top: 2px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&family=Noto+Sans+Arabic&family=Source+Sans+Pro:wght@400&display=swap');
+
+/* Body-Styling */
+body, p, h1, h2, h3, h4, h5, h6, span, div {
+    font-family: "Noto Sans", "Source Sans Pro", sans-serif !important;
 }
