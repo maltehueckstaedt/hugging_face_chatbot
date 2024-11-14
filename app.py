@@ -2,14 +2,14 @@ from openai import OpenAI
 import streamlit as st
 
 # Font Awesome CSS einbinden
-# st.markdown(
-#     """
-#     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-#     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&family=Noto+Sans+Arabic&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
+st.markdown(
+    """
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&family=Noto+Sans+Arabic&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
 
-#     """,
-#     unsafe_allow_html=True
-# )
+    """,
+    unsafe_allow_html=True
+)
 
 # CSS laden
 def load_css():
@@ -44,7 +44,7 @@ if "messages" not in st.session_state:
             # Französischer Text
             "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider.<br><br>"
             # Vereinfachtes Chinesisch
-            "欢迎，我是切尔诺夫面孔的聊天机器人。我是来帮忙的。"
+            "欢迎，我是切尔诺夫面孔的聊天机器人。我是来帮忙的。<br><br>"
         )
     })
 
@@ -64,7 +64,7 @@ for message in st.session_state.messages:
                 )
         else:
             with st.chat_message(message["role"], avatar=None):  # Kein Avatar für den Nutzer
-                st.write(
+                st.markdown(
                     f"<div class='user-message'>{message['content']}</div>",
                     unsafe_allow_html=True
                 )
@@ -73,7 +73,7 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("Message"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user", avatar=None):  # Kein Avatar für den Nutzer
-        st.write(
+        st.markdown(
             f"<div class='user-message'>{prompt}</div>",
             unsafe_allow_html=True
         )
