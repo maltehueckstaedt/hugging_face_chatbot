@@ -64,7 +64,7 @@ for message in st.session_state.messages:
                 )
         else:
             with st.chat_message(message["role"], avatar=None):  # Kein Avatar für den Nutzer
-                st.markdown(
+                st.write(
                     f"<div class='user-message'>{message['content']}</div>",
                     unsafe_allow_html=True
                 )
@@ -73,7 +73,7 @@ for message in st.session_state.messages:
 if prompt := st.chat_input("Message"):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user", avatar=None):  # Kein Avatar für den Nutzer
-        st.markdown(
+        st.write(
             f"<div class='user-message'>{prompt}</div>",
             unsafe_allow_html=True
         )
