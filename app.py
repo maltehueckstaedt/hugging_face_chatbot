@@ -40,9 +40,9 @@ if "messages" not in st.session_state:
         "role": "assistant",
         "content": (
             # Englischer Text
-            "Welcome, I am the chatbot of the Chernoff Faces. I'm here to help.<br><br>"
+            "Welcome, I am the chatbot of the Chernoff Faces. I'm here to help. "
             # Französischer Text
-            "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider.<br><br>"
+            "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider. "
             # Vereinfachtes Chinesisch
             "欢迎，我是切尔诺夫面孔的聊天机器人。我是来帮忙的。<br><br>"
         )
