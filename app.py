@@ -2,14 +2,14 @@ from openai import OpenAI
 import streamlit as st
 
 # Font Awesome CSS einbinden
-st.markdown(
-    """
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&family=Noto+Sans+Arabic&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
+# st.markdown(
+#     """
+#     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+#     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=Noto+Sans+SC&family=Noto+Sans+Arabic&family=Source+Sans+Pro:wght@400&display=swap" rel="stylesheet">
 
-    """,
-    unsafe_allow_html=True
-)
+#     """,
+#     unsafe_allow_html=True
+# )
 
 # CSS laden
 def load_css():
