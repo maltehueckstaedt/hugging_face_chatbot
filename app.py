@@ -25,6 +25,10 @@ with open("kontext_cf.txt", "r", encoding="utf-8") as file:
 
 client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
+# Stelle sicher, dass die Systemnachricht immer an das Modell übergeben wird
+system_message = {"role": "system", "content": text_inhalt}
+
+
 if "openai_model" not in st.session_state:
     st.session_state["openai_model"] = "gpt-3.5-turbo"
 
@@ -36,19 +40,11 @@ if "messages" not in st.session_state:
         "role": "assistant",
         "content": (
             # Englischer Text
-            "Welcome, I am the chatbot of the Chernoff Faces. I'm here to help."
-            "Please ask me questions about Chernoff Faces and Chernoff Faces related topics. I am not autoscripted."
-            " I can communicate with you in many languages, including English, French, Chinese, Arabic, and many more.<br><br>"
-
+            "Welcome, I am the chatbot of the Chernoff Faces. I'm here to help.<br><br>"
             # Französischer Text
-            "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider."
-            "Veuillez me poser des questions sur les Chernoff Faces et les sujets liés aux Chernoff Faces. Je ne suis pas autosuffisant."
-            "Je peux communiquer avec vous dans de nombreuses langues, dont l'anglais, le français, le chinois, l'arabe et bien d'autres.<br><br>"
-
+            "Bienvenue, je suis le chatbot des visages de Chernoff. Je suis là pour vous aider.<br><br>"
             # Vereinfachtes Chinesisch
             "欢迎，我是切尔诺夫面孔的聊天机器人。我是来帮忙的。"
-            "请向我提出关于切尔诺夫面孔和切尔诺夫面孔相关主题的问题。我不是自动脚本。"
-            "我可以用多国语言与您沟通，包括英文、法文、中文、阿拉伯文等等。"
         )
     })
 
@@ -88,11 +84,10 @@ if prompt := st.chat_input("Message"):
         full_response = ""
         stream = client.chat.completions.create(
             model=st.session_state["openai_model"],
-            messages=[
-                {"role": m["role"], "content": m["content"]}
-                for m in st.session_state.messages
-            ],
+            messages=[{"role": m["role"], "content": m["content"]} for m in st.session_state.messages],
             stream=True,
+            temperature=0.0,
+            top_p=0.3
         )
         for chunk in stream:
             content = getattr(chunk.choices[0].delta, 'content', None)
