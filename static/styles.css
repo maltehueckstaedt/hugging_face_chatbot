@@ -20,7 +20,7 @@
     border-radius: 8px;
     margin: 5px 0;
     width: fit-content;
-    max-width: 50%;
+    max-width: 100%;
     margin-left: auto;
     text-align: right;
 }
@@ -35,7 +35,7 @@
     border-radius: 8px;
     margin: 5px 0;
     width: fit-content;
-    max-width: 50%;
+    max-width: 100%;
     margin-right: auto;
     transition: background-color 0.3s ease-in-out;
     line-height: 1.2; /* Hier den Wert anpassen, z. B. 1.2 für engeren Zeilenabstand */
